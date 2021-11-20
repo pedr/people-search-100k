@@ -1,5 +1,5 @@
 
-import { nextPage ,lastPage} from '../state/searchUser.Actions';
+import { nextPage, lastPage, jumpToPage} from '../state/searchUser.Actions';
 
 function SearchUserList({ searchUserState, searchUserDispatch }) {
 
@@ -9,6 +9,12 @@ function SearchUserList({ searchUserState, searchUserDispatch }) {
 
   const backward = () => {
     searchUserDispatch(lastPage())
+  }
+
+  const handleCurrentPageInput = e => {
+    const pageNumber = e.target.value;
+
+    searchUserDispatch(jumpToPage(pageNumber))
   }
 
   return <div>
@@ -32,8 +38,19 @@ function SearchUserList({ searchUserState, searchUserDispatch }) {
         })
       }
     </ul>
-    <button onClick={backward}>Back</button>
-    <button onClick={forward}>Forward</button>
+    <div>
+      <button onClick={backward}>Back</button>
+      <label>{searchUserState.pagination.minPage}</label>
+      <input 
+        type="number"
+        minvalue={searchUserState.pagination.minPage}
+        maxvalue={searchUserState.pagination.maxPage}
+        value={searchUserState.pagination.currentPage}
+        onChange={handleCurrentPageInput}
+      />
+      <label>{searchUserState.pagination.maxPage}</label>
+      <button onClick={forward}>Forward</button>
+    </div>
   </div>
 }
 

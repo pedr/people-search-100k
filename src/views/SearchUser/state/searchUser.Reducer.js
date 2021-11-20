@@ -15,13 +15,16 @@ const searchUserReducer = (state, action) => {
       return _loadUserData(state, action);
 
     case constants.NEXT_PAGE:
-      return _changePage(state, { value: state.pagination.currentPage + 1 })
+      return _changePage(state, { value: parseInt(state.pagination.currentPage) + 1 })
     
     case constants.LAST_PAGE:
-      return _changePage(state, { value: state.pagination.currentPage - 1 })
+      return _changePage(state, { value: parseInt(state.pagination.currentPage) - 1 })
       
     case constants.ERROR_LOADING_DATA: 
       return _errorLoadingData(state);
+
+    case constants.JUMP_TO_PAGE:
+      return _changePage(state, { value: action.value })
     
     default: 
       return { ...state }

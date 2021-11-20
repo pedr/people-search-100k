@@ -6,6 +6,7 @@ const Constants = {
   ERROR_LOADING_DATA: 'ERROR_LOADING_DATA',
   NEXT_PAGE: 'NEXT_PAGE',
   LAST_PAGE: 'LAST_PAGE',
+  JUMP_TO_PAGE: 'JUMP_TO_PAGE',
 }
 
 export default Constants;

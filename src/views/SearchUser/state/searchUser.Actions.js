@@ -34,10 +34,18 @@ const lastPage = () => {
   }
 }
 
+const jumpToPage = pageNumber => {
+  return {
+    type: constants.JUMP_TO_PAGE,
+    value: pageNumber,
+  }
+}
+
 export  {
   beginSearchName,
   loadUserData,
   errorLoadingData,
   nextPage,
   lastPage,
+  jumpToPage,
 }
