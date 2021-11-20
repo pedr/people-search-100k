@@ -38,7 +38,8 @@ const _errorLoadingData = (state) => {
 
 const _beginSearchName = (state, action) => {
 
-  const usersFiltered = state.users.filter(u => u.name.includes(action.value));
+  const normalizedSearchTerm = action.value.toLowerCase();
+  const usersFiltered = state.users.filter(u => u.normalizedName.includes(normalizedSearchTerm));
   const currentPage = 1
   const minPage = 1
   const maxPage = Math.ceil(usersFiltered.length / state.pagination.perPage)
@@ -135,11 +136,13 @@ const searchUserInitialState = {
     data: [
       // {
       //   name: '',
-      //   age: ''
+      //   age: '',
+      //   normalizedName: ''
       // },
       // {
       //   name: '',
-      //   age: ''
+      //   age: '',
+      //   normalizedName: ''
       // },
     ],
     currentPage: 1,
@@ -150,21 +153,25 @@ const searchUserInitialState = {
   users: [
     // {
     //   name: '',
-    //   age: ''
+    //   age: '',
+    //   normalizedName: ''
     // },
     // {
     //   name: '',
-    //   age: ''
+    //   age: '',
+    //   normalizedName: ''
     // },
   ],
   usersFiltered: [
     // {
     //   name: '',
-    //   age: ''
+    //   age: '',
+    //   normalizedName: ''
     // },
     // {
     //   name: '',
-    //   age: ''
+    //   age: '',
+    //   normalizedName: ''
     // },
   ]
 }

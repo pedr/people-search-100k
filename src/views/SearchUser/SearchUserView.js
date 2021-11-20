@@ -18,7 +18,9 @@ function SearchUserView() {
           searchUserDispatch(errorLoadingData("Something wrong with the API"))
         }
 
-        searchUserDispatch(loadUserData(data))
+        const usersWithNormalizedName = data.map(user => ({ ...user, normalizedName: user.name.toLowerCase() }))
+        
+        searchUserDispatch(loadUserData(usersWithNormalizedName))
       })
       .catch(error => searchUserDispatch(errorLoadingData(error)))
   }, [])
