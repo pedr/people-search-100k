@@ -1,4 +1,15 @@
 
+import { 
+  Text, 
+  Flex, 
+  List,
+  Grid,
+  Input,
+  Button,
+  Divider,
+  ListItem, 
+} from '@chakra-ui/react';
+
 import { nextPage, lastPage, jumpToPage} from '../state/searchUser.Actions';
 
 function SearchUserList({ searchUserState, searchUserDispatch }) {
@@ -17,41 +28,56 @@ function SearchUserList({ searchUserState, searchUserDispatch }) {
     searchUserDispatch(jumpToPage(pageNumber))
   }
 
-  return <div>
-    <div>
-      <label>Name:</label>
-      <label>Age:</label>
-    </div>
-    <ul>
-      {
-        searchUserState.pagination.data.map(user => {
-          return (
-            <li key={`${user.name}${user.age}`}>
-              <span>
-                {user.name}
-              </span>
-              <span>
-                {user.age}
-              </span>
-          </li>
-          );
-        })
-      }
-    </ul>
-    <div>
-      <button onClick={backward}>Back</button>
-      <label>{searchUserState.pagination.minPage}</label>
-      <input 
-        type="number"
-        minvalue={searchUserState.pagination.minPage}
-        maxvalue={searchUserState.pagination.maxPage}
-        value={searchUserState.pagination.currentPage}
-        onChange={handleCurrentPageInput}
-      />
-      <label>{searchUserState.pagination.maxPage}</label>
-      <button onClick={forward}>Forward</button>
-    </div>
-  </div>
+  const handleToLastPage = () => {
+    searchUserDispatch(jumpToPage(searchUserState.pagination.maxPage))
+  }
+
+  return (
+    <Grid templateRows="1fr" mt={2}>
+      <List spacing={1}>
+        {
+          searchUserState.pagination.data.map(user => {
+            return (
+              <ListItem key={`${user.name}${user.age}`}>
+                <Text>
+                  {user.name}
+                </Text>
+                <Flex align="center">
+                  <Text fontSize="xs" m={1} opacity={0.5}>Age: </Text>
+                  <Text fontSize="sm" opacity={0.8}>{user.age}</Text>
+                </Flex>
+                <Divider />
+            </ListItem>
+            );
+          })
+        }
+      </List>
+      <Grid templateColumns="1fr 3fr 2fr 1fr" gap={1} mt={3}>
+        <Button size="xs" colorScheme="teal" onClick={backward}>Back</Button>
+        <Flex align="center" justify="center">
+          <Text fontSize="xs" opacity={0.8} mr={1}>Current Page: </Text>
+          <Input 
+            maxWidth={50}
+            size="xs"
+            type="number"
+            minvalue={searchUserState.pagination.minPage}
+            maxvalue={searchUserState.pagination.maxPage}
+            value={searchUserState.pagination.currentPage}
+            onChange={handleCurrentPageInput}
+          />
+        </Flex>
+        <Flex align="center" justify="end">
+          <Text fontSize="xs" opacity={0.8} mr={1}>Max page:</Text>
+          <Button 
+            onClick={handleToLastPage}
+            size="xs"
+            minWidth="50" 
+          >{searchUserState.pagination.maxPage}</Button>
+        </Flex>
+        <Button size="xs" colorScheme="teal" onClick={forward}>Forward</Button>
+      </Grid>
+    </Grid>
+  )
 }
 
 export default SearchUserList;

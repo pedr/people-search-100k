@@ -10,7 +10,7 @@ Small React app that calls an external API with 100k user records, stores all th
 - [x] Search by Name 
 - [x] Debounce search to improve performance
 - [x] Paginate search results
-- [ ] Create user friendly interface
+- [x] Create user friendly interface
 - [ ] Search by age
 - [ ] Allow user to change number of records per page
 - [ ] Testing

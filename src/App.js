@@ -1,11 +1,14 @@
 
 import SearchUserView from './views/SearchUser/SearchUserView';
+import { ChakraProvider, Flex } from "@chakra-ui/react"
 
 function App() {
   return (
-    <>
-      <SearchUserView />
-    </>
+    <ChakraProvider>
+      <Flex justify="center">
+        <SearchUserView />
+      </Flex>
+    </ChakraProvider>
   );
 }
 
