@@ -3,6 +3,9 @@
 Small React app that calls an external API with 100k user records, stores all the records on memory
   and filter and paginate them to display to the user, controlling the app state with useReducer.
 
+
+Hosted at [Cloudflare Pages](https://people-search-100k.pages.dev/)
+
 ## Tasks
 
 - [x] Call API
@@ -11,6 +14,7 @@ Small React app that calls an external API with 100k user records, stores all th
 - [x] Debounce search to improve performance
 - [x] Paginate search results
 - [x] Create user friendly interface
+- [x] Host on the web
 - [ ] Search by age
 - [ ] Allow user to change number of records per page
 - [ ] Testing
